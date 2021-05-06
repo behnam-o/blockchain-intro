@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/sha256"
 	"fmt"
+	"math/big"
 )
 
 
@@ -15,6 +16,11 @@ type BlockChain struct{
 	blocks []*Block
 }
 
+type ProofOfWork struct {
+	Block *Block
+	Target *big.Int
+ }
+ 
 func (b *Block) putHash() {
 	info := append(b.Data, b.PrevHash...)
 	// This will join our previous block's relevant info with the new blocks
